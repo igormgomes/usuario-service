@@ -1,7 +1,6 @@
 package br.com.usuario.client.impl;
 
 import br.com.usuario.client.CampanhaClient;
-import br.com.usuario.exception.CampanhaNotFoundException;
 import br.com.usuario.request.CampanhaUsuarioRequest;
 import br.com.usuario.response.CampanhaResponse;
 import com.google.common.collect.Lists;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -34,7 +32,7 @@ public class CampanhaClientImpl implements CampanhaClient {
         this.restTemplate = restTemplate;
     }
 
-    @HystrixCommand(fallbackMethod = "campanhaDefault", ignoreExceptions = {HttpClientErrorException.class, CampanhaNotFoundException.class})
+    @HystrixCommand(fallbackMethod = "campanhaDefault")
     @Override
     public List<CampanhaResponse> busca (Long idTimeCoracao) {
         URI uri = URI.create(url + "/campanha/time/" + idTimeCoracao);
@@ -47,7 +45,7 @@ public class CampanhaClientImpl implements CampanhaClient {
         return Lists.newArrayList(responseEntity.getBody());
     }
 
-    @HystrixCommand(fallbackMethod = "associaDefault", ignoreExceptions = {HttpClientErrorException.class})
+    @HystrixCommand(fallbackMethod = "associaDefault")
     @Override
     public void associa (CampanhaUsuarioRequest campanhaUsuarioRequest) {
         URI uri = URI.create(url + "/campanha/associa");
