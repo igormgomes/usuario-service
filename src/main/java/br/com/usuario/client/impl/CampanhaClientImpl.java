@@ -64,6 +64,7 @@ public class CampanhaClientImpl implements CampanhaClient {
         campanhaResponse.setDataFimVigencia(LocalDate.now().plusDays(1));
         campanhaResponse.setNome("Campanha default");
         campanhaResponse.setIdTimeDoCoracao(idTimeCoracao);
+        campanhaResponse.setId(1L);
         return Lists.newArrayList(campanhaResponse);
     }
 
