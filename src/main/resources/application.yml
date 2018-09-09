@@ -14,3 +14,6 @@ server:
   port: 8090
 campanha:
   url: http://localhost:8080
+logging:
+  level:
+    com.netflix.hystrix: DEBUG

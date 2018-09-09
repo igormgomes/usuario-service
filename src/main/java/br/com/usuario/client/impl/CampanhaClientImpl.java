@@ -57,6 +57,7 @@ public class CampanhaClientImpl implements CampanhaClient {
     }
 
     public List<CampanhaResponse> campanhaDefault(Long idTimeCoracao) {
+        this.logger.info("Executing campanhaDefault");
         CampanhaResponse campanhaResponse = new CampanhaResponse();
         campanhaResponse.setDataInicioVigencia(LocalDate.now());
         campanhaResponse.setDataFimVigencia(LocalDate.now().plusDays(1));
@@ -67,5 +68,6 @@ public class CampanhaClientImpl implements CampanhaClient {
     }
 
     public void associaDefault(CampanhaUsuarioRequest campanhaUsuarioRequest) {
+        this.logger.info("Executing associaDefault");
     }
 }
